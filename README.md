@@ -20,24 +20,31 @@ Apache beam based dev kit with vscode/devcontainer
 ```
 3. 各データをマージしてsetsとnamesを出力
 ```json
-	[
+{
+	"sets": [
 		{
-			"sets":
-				{
-					"name": "Jared Welch",
-					"address": "59109 Brown Rest Maureenbury, KS 24574",
-					"firstname": "Jared",
-					"lastname": "Welch"
-				},
-				{
-					"name": "Chantal Gomes",
-					"address": "rue Roussel 32872 Peron-la-Forêt",
-					"firstname": "Chantal",
-					"lastname": "Gomes"
-				}
+			"name": "Adam Wright",
+			"address": "Arndt-Karge-Platz 2/5 49408 Mittweida",
+			"firstname": "Adam",
+			"lastname": "Wright"
 		},
 		{
-			"names":["Jared Welch","Chantal Gomes"]
+			"name": "Chantal Gomes",
+			"address": "rue Roussel 32872 Peron-la-Forêt",
+			"firstname": "Chantal",
+			"lastname": "Gomes"
+		},
+		{
+			"name": "Jared Welch",
+			"address": "59109 Brown Rest Maureenbury, KS 24574",
+			"firstname": "Jared",
+			"lastname": "Welch"
 		}
+	],
+	"names": [
+		"Adam Wright",
+		"Chantal Gomes",
+		"Jared Welch"
 	]
+}
 ```
