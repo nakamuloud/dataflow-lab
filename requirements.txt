@@ -1,1 +1,3 @@
-flask
+apache-beam
+apache-beam[gcp]
+apache-beam[test]
