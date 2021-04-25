@@ -3,23 +3,45 @@ import apache_beam as beam
 
 
 class MergeResult(beam.CombineFn):
-    # 統合後のPCollectionを作成
+    """
+    PCollectionに対し､
+    output1: すべてのPCollectionをListに格納したもの
+    output2: PCollectionのMapのkey(=keyword)を持つものを抽出する｡
+    """
+
+    def __init__(self, keyword):
+        """
+        keywordのKeyのリストを作成
+        """
+        self.keyword = keyword
+
     def create_accumulator(self):
-        print("create")
+        """
+        accumulatorを定義
+        """
+        # print("create")
         return ([], [])
 
-    # 各要素に対して実行
     def add_input(self, accumulator, element):
-        print("add", "acc", accumulator, "ele", element)
+        """
+        各PCollectionをaccumulatorに格納
+        """
+        # print("add", "acc", accumulator, "ele", element)
         sets, names = accumulator
-        return sets.append(element), names.append(element.get("name"))
+        sets.append(element)
+        names.append(element.get(self.keyword))
+        return sets, names
 
     # すべてのaccumulatorを統合
     def merge_accumulators(self, accumulators):
-        print("merge:", accumulators)
+        """
+        accumulatorを結合
+        """
         return accumulators
 
-    # 最終処理
     def extract_output(self, accumulator):
-        print("extract:", accumulator)
-        return accumulator
+        """
+        最終処理
+        """
+        sets, names = accumulator[0][0], accumulator[0][1]
+        return {"sets": sets, "names": names}

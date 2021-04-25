@@ -35,14 +35,11 @@ class TestExtractNameProperty(TestCase):
             step1 = (p
                      | "Init" >> beam.Create(inputs)
                      | "ExtractNameProperty" >> beam.ParDo(process.AddNameProperty(" "))
-                     )
-
-            step2 = (step1
                      # 合算時以外にも呼ばれる,returnのみ１回呼ばれる
-                     | "CombineResult" >> beam.CombineGlobally(output.MergeResult())
-                     | "Print" >> beam.Map(print)
+                     | "CombineResult" >> beam.CombineGlobally(output.MergeResult(keyword="name"))
                      )
+            step2a = (step1
+                      | "EachProcess" >> beam.ParDo(process.Compute())
+                      )
             assert_that(step1, equal_to(
                 load_data("./data/sample.output.json", type="dict")), label="並列で姓名を追加できている")
-            # assert_that(step2, load_data(
-            #     "./data/sample.output.json", type="dict"), label="並列処理の結果を正しく結合できている")

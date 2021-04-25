@@ -11,8 +11,21 @@ class AddNameProperty(beam.DoFn):
     def __init__(self, delimiter=' '):
         self.delimiter = delimiter
 
-    def process(self, text):
-        data = dict(ast.literal_eval(text.decode("unicode_escape")))
+    def process(self, input):
+        data = dict(ast.literal_eval(input.decode("unicode_escape")))
         data["firstname"] = data.get("name").split(" ")[0]
         data["lastname"] = data.get("name").split(" ")[-1]
         yield data
+
+
+class Compute(beam.DoFn):
+    """
+    do next step
+    """
+
+    def __init__(self):
+        pass
+
+    def process(self, input):
+        print(input)
+        yield input
