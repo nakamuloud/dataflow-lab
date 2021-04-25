@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Adam Wright",
+		"address": "Arndt-Karge-Platz 2/5 49408 Mittweida",
+		"firstname": "Adam",
+		"lastname": "Wright"
+	},
+	{
+		"name": "Chantal Gomes",
+		"address": "rue Roussel 32872 Peron-la-Forêt",
+		"firstname": "Chantal",
+		"lastname": "Gomes"
+	},
+	{
+		"name": "Jared Welch",
+		"address": "59109 Brown Rest Maureenbury, KS 24574",
+		"firstname": "Jared",
+		"lastname": "Welch"
+	}
+]
