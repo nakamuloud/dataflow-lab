@@ -38,7 +38,7 @@ def run():
     p = beam.Pipeline(options=pipeline_options)
     messages = (p
                 | beam.io.ReadFromPubSub(with_attributes=True,
-                                         subscription="projects/mobilitygw-develop/subscriptions/develop-sp-subscription")
+                                         subscription="<gcp-pubsub-id>")
                 | "GetLastKnownVehicleShadow" >> GroupMessagesByFixedWindows(5.0, 1)
                 | "Decode" >> beam.Map(input.decode_and_decompress)
                 | beam.Map(print)
